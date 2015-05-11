@@ -52,6 +52,11 @@
 <node CREATED="1431301174176" ID="ID_1975061826" MODIFIED="1431301178162" TEXT="Just do the same thing again"/>
 </node>
 </node>
+<node CREATED="1431301934579" ID="ID_87173671" MODIFIED="1431301938059" TEXT="Can we use events?">
+<node CREATED="1431301938785" ID="ID_1221165039" MODIFIED="1431301947768" TEXT="An event ends when there hasn&apos;t been motion for N seconds"/>
+<node CREATED="1431301947960" ID="ID_699381083" MODIFIED="1431301966927" TEXT="And then next time motion is detected, that&apos;s when the next event starts"/>
+<node CREATED="1431302143609" ID="ID_304552885" MODIFIED="1431302158199" TEXT="I suppose that would help us avoid updating the website too often, yes..."/>
+</node>
 </node>
 <node CREATED="1431301460459" ID="ID_1634956536" MODIFIED="1431301461589" POSITION="right" TEXT="the site"/>
 </node>
