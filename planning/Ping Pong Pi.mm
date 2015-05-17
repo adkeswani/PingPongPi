@@ -1,10 +1,12 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1431298320727" ID="ID_1801434271" MODIFIED="1431298567938" TEXT="Ping Pong Pi">
-<node CREATED="1431299663967" FOLDED="true" ID="ID_530804312" MODIFIED="1431301003024" POSITION="right" TEXT="motion to website interface">
+<node CREATED="1431299663967" ID="ID_530804312" MODIFIED="1431814640274" POSITION="right" TEXT="motion to website interface">
 <node CREATED="1431299681906" ID="ID_1567186222" MODIFIED="1431299694731" TEXT="Could use a text file and then just have the website code read that"/>
 <node CREATED="1431299694915" ID="ID_1732103164" MODIFIED="1431299704285" TEXT="But that creates a tight dependency between them"/>
-<node CREATED="1431299723920" ID="ID_317925435" MODIFIED="1431299742917" TEXT="Instead, have the website expose an interface that motion can use to pass in updates"/>
+<node CREATED="1431299723920" ID="ID_317925435" MODIFIED="1431814644953" TEXT="Instead, have the website expose an interface that motion can use to pass in updates">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
 </node>
 <node CREATED="1431301430942" ID="ID_454370266" MODIFIED="1431301454669" POSITION="right" TEXT="motion detect (the thing that sends updates to the site)">
 <node CREATED="1431299743861" FOLDED="true" ID="ID_497474240" MODIFIED="1431301002507" TEXT="Option 1: knowing when the table is in use/not in use">
@@ -40,7 +42,7 @@
 <node CREATED="1431300804144" ID="ID_1588635649" MODIFIED="1431300817846" TEXT="And we can perhaps display more than one event"/>
 </node>
 <node CREATED="1431300916891" ID="ID_1457805691" MODIFIED="1431300957587" TEXT="Option 2 definitely seems easier, more sensible"/>
-<node CREATED="1431300959097" ID="ID_1914375467" MODIFIED="1431300997990" TEXT="More details on option 2">
+<node CREATED="1431300959097" FOLDED="true" ID="ID_1914375467" MODIFIED="1431302647760" TEXT="More details on option 2">
 <node CREATED="1431300998883" ID="ID_524738396" MODIFIED="1431301031302" TEXT="Table is in use, so we receive a motion started event">
 <node CREATED="1431301080364" ID="ID_495792526" MODIFIED="1431301089806" TEXT="We call some command that triggers us to update the website"/>
 </node>
@@ -52,10 +54,29 @@
 <node CREATED="1431301174176" ID="ID_1975061826" MODIFIED="1431301178162" TEXT="Just do the same thing again"/>
 </node>
 </node>
-<node CREATED="1431301934579" ID="ID_87173671" MODIFIED="1431301938059" TEXT="Can we use events?">
+<node CREATED="1431301934579" FOLDED="true" ID="ID_87173671" MODIFIED="1431814153083" TEXT="Can we use events?">
 <node CREATED="1431301938785" ID="ID_1221165039" MODIFIED="1431301947768" TEXT="An event ends when there hasn&apos;t been motion for N seconds"/>
 <node CREATED="1431301947960" ID="ID_699381083" MODIFIED="1431301966927" TEXT="And then next time motion is detected, that&apos;s when the next event starts"/>
 <node CREATED="1431302143609" ID="ID_304552885" MODIFIED="1431302158199" TEXT="I suppose that would help us avoid updating the website too often, yes..."/>
+<node CREATED="1431302643691" ID="ID_463377909" MODIFIED="1431302646482" TEXT="This will be tuned"/>
+<node CREATED="1431302651281" ID="ID_521011304" MODIFIED="1431302692912" TEXT="But suppose we make it 5 seconds. If there&apos;s no motion in those 5 seconds, the event stops, and the next time we see motion, we will update the website"/>
+</node>
+<node CREATED="1431302984547" FOLDED="true" ID="ID_1776791336" MODIFIED="1431815242310" TEXT="We either use events or just motion start">
+<node CREATED="1431814248152" ID="ID_1548584469" MODIFIED="1431814411120" TEXT="If we use events and the player stop then start, we won&apos;t change the site"/>
+<node CREATED="1431814411374" ID="ID_1334615839" MODIFIED="1431814428763" TEXT="If we use motion start, then if the players stop, we will change on the next movement"/>
+<node CREATED="1431814438016" ID="ID_1437065134" MODIFIED="1431814609623" TEXT="We should use motion start stop, because otherwise we might not update often enough!"/>
+<node CREATED="1431815069853" ID="ID_511202920" MODIFIED="1431815086432" TEXT="Ach, we only have a motion detected event, not motion start/stop"/>
+<node CREATED="1431815086640" ID="ID_1316388132" MODIFIED="1431815090057" TEXT="So we&apos;ll have to use events"/>
+<node CREATED="1431815090249" ID="ID_1598779508" MODIFIED="1431815100894" TEXT="Let&apos;s go with a short gap then"/>
+</node>
+<node CREATED="1431815242775" ID="ID_1836167265" MODIFIED="1431815246581" TEXT="Event started script">
+<node CREATED="1431815247410" ID="ID_1961286635" MODIFIED="1431815262144" TEXT="We want to sleep for a second, then send the latest image to the site"/>
+<node CREATED="1431815262351" ID="ID_999869758" MODIFIED="1431815275908" TEXT="But what if we get multiple events while the command is running?"/>
+<node CREATED="1431815426112" ID="ID_1157218411" MODIFIED="1431815432348" TEXT="We could come up with locking somehow"/>
+<node CREATED="1431815432556" ID="ID_94112502" MODIFIED="1431815447197" TEXT="Or we could just do it in parallel"/>
+<node CREATED="1431816887246" ID="ID_806162465" MODIFIED="1431816887817" TEXT="http://jdimpson.livejournal.com/5685.html">
+<node CREATED="1431816890299" ID="ID_567281849" MODIFIED="1431816891642" TEXT="Locking"/>
+</node>
 </node>
 </node>
 <node CREATED="1431301460459" ID="ID_1634956536" MODIFIED="1431301461589" POSITION="right" TEXT="the site"/>
