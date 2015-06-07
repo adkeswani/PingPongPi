@@ -1,0 +1,14 @@
+#!/bin/bash
+
+LCK='./.eventEnded.lck';
+HND=424; # Hopefully unused
+eval "exec $HND<> $LCK;";
+if flock -n $HND; then
+    > $LCK; # Clear old PID
+    echo $$ > ./.eventStarted.lck;
+    echo "Handling event in this process ($$)";
+    sleep 20;
+    # Get latest capture, update site, delete all captures
+else
+    echo "PID $(cat $LCK) is already handling event";
+fi
