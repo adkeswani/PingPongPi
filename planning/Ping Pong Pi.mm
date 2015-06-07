@@ -134,6 +134,11 @@
 <node CREATED="1433645882266" ID="ID_263761962" MODIFIED="1433645901240" TEXT="It makes sense for the site to tell us if it wants this image rather than us trying to decide from the motion capture side."/>
 <node CREATED="1433645905338" ID="ID_1604934329" MODIFIED="1433645916085" TEXT="That way they&apos;re totally decoupled, just dependent on the interface"/>
 </node>
+<node CREATED="1433716052133" ID="ID_732994300" MODIFIED="1433716054860" TEXT="Use node.js?">
+<node CREATED="1433716055649" ID="ID_830805799" MODIFIED="1433716096766" TEXT="Simple to set up, as opposed to apache?"/>
+<node CREATED="1433716756435" ID="ID_1888724660" MODIFIED="1433716791137" TEXT="Won&apos;t do extra stuff that apache would normally do, throttling etc."/>
+<node CREATED="1433717460630" ID="ID_115530820" MODIFIED="1433717462708" TEXT="Try it and see"/>
+</node>
 </node>
 <node CREATED="1433114555656" ID="ID_126664002" MODIFIED="1433114558044" TEXT="Open questions">
 <node CREATED="1433114558920" ID="ID_1528912036" MODIFIED="1433640672817" TEXT="If we have a flock, will it automatically get released on process exit?">
