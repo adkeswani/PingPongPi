@@ -8,7 +8,8 @@
 <font NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
-<node CREATED="1431301430942" ID="ID_454370266" MODIFIED="1431301454669" POSITION="right" TEXT="motion detect (the thing that sends updates to the site)">
+<node CREATED="1431301430942" ID="ID_454370266" MODIFIED="1433114316031" POSITION="right" TEXT="motion detect (the thing that sends updates to the site)">
+<node CREATED="1433114316010" ID="ID_467325129" MODIFIED="1433114317244" TEXT="Notes">
 <node CREATED="1431299743861" FOLDED="true" ID="ID_497474240" MODIFIED="1431301002507" TEXT="Option 1: knowing when the table is in use/not in use">
 <node CREATED="1431299797101" ID="ID_706497313" MODIFIED="1431299802189" TEXT="We detect motion"/>
 <node CREATED="1431299802404" ID="ID_1833167761" MODIFIED="1431299817294" TEXT="How much consecutive motion does there have to be before we deem the table in use"/>
@@ -42,7 +43,7 @@
 <node CREATED="1431300804144" ID="ID_1588635649" MODIFIED="1431300817846" TEXT="And we can perhaps display more than one event"/>
 </node>
 <node CREATED="1431300916891" ID="ID_1457805691" MODIFIED="1431300957587" TEXT="Option 2 definitely seems easier, more sensible"/>
-<node CREATED="1431300959097" FOLDED="true" ID="ID_1914375467" MODIFIED="1431302647760" TEXT="More details on option 2">
+<node CREATED="1431300959097" FOLDED="true" ID="ID_1914375467" MODIFIED="1433110661982" TEXT="More details on option 2">
 <node CREATED="1431300998883" ID="ID_524738396" MODIFIED="1431301031302" TEXT="Table is in use, so we receive a motion started event">
 <node CREATED="1431301080364" ID="ID_495792526" MODIFIED="1431301089806" TEXT="We call some command that triggers us to update the website"/>
 </node>
@@ -69,7 +70,7 @@
 <node CREATED="1431815086640" ID="ID_1316388132" MODIFIED="1431815090057" TEXT="So we&apos;ll have to use events"/>
 <node CREATED="1431815090249" ID="ID_1598779508" MODIFIED="1431815100894" TEXT="Let&apos;s go with a short gap then"/>
 </node>
-<node CREATED="1431815242775" ID="ID_1836167265" MODIFIED="1431815246581" TEXT="Event started script">
+<node CREATED="1431815242775" FOLDED="true" ID="ID_1836167265" MODIFIED="1433110660983" TEXT="Event started script">
 <node CREATED="1431815247410" ID="ID_1961286635" MODIFIED="1431815262144" TEXT="We want to sleep for a second, then send the latest image to the site"/>
 <node CREATED="1431815262351" ID="ID_999869758" MODIFIED="1431815275908" TEXT="But what if we get multiple events while the command is running?"/>
 <node CREATED="1431815426112" ID="ID_1157218411" MODIFIED="1431815432348" TEXT="We could come up with locking somehow"/>
@@ -77,6 +78,71 @@
 <node CREATED="1431816887246" ID="ID_806162465" MODIFIED="1431816887817" TEXT="http://jdimpson.livejournal.com/5685.html">
 <node CREATED="1431816890299" ID="ID_567281849" MODIFIED="1431816891642" TEXT="Locking"/>
 </node>
+</node>
+<node CREATED="1433110630092" ID="ID_652130976" MODIFIED="1433110659493" TEXT="Make the event started script into a command (add to path maybe?), and that way we don&apos;t need to worry about where motion is runnin">
+<node CREATED="1433112908648" ID="ID_376397953" MODIFIED="1433112920858" TEXT="Hmm, the lock locations will need to be changed"/>
+</node>
+<node CREATED="1433110672683" FOLDED="true" ID="ID_378938817" MODIFIED="1433114311278" TEXT="Thinking about events">
+<node CREATED="1433110675939" ID="ID_948237146" MODIFIED="1433110686621" TEXT="So if we don&apos;t detect motion for 3 seconds, that becomes a new event"/>
+<node CREATED="1433110705344" ID="ID_635794757" MODIFIED="1433110756444" TEXT="And so we&apos;ll wait for one second, then we&apos;ll get the latest image"/>
+<node CREATED="1433110782447" ID="ID_449289143" MODIFIED="1433110799228" TEXT="We won&apos;t receive another event-started until the next time there&apos;s motion"/>
+<node CREATED="1433110799427" ID="ID_1178537768" MODIFIED="1433110813388" TEXT="What if there&apos;s constant movement? Doesn&apos;t that mean we&apos;d never update the site?"/>
+<node CREATED="1433111713199" ID="ID_981251904" MODIFIED="1433111764010" TEXT="Okay, so should we have an eventStopped script too?"/>
+<node CREATED="1433111764209" ID="ID_589394820" MODIFIED="1433111779535" TEXT="While there is motion, we keep updating the site every minute?"/>
+</node>
+<node CREATED="1433111109724" FOLDED="true" ID="ID_353117445" MODIFIED="1433114311646" TEXT="Do we actually need to use motion detect?">
+<node CREATED="1433111118099" ID="ID_892736896" MODIFIED="1433111130883" TEXT="Not really. We could update once a minute. But motion detect is kinda cool"/>
+<node CREATED="1433111278057" ID="ID_93960204" MODIFIED="1433111290542" TEXT="It also saves power and bandwidth"/>
+</node>
+<node CREATED="1433112248367" FOLDED="true" ID="ID_3527737" MODIFIED="1433114311968" TEXT="So how will we present the information?">
+<node CREATED="1433112254468" ID="ID_1089356186" MODIFIED="1433112366241" TEXT="Sure we can say motion was detected at X time when an event starts"/>
+<node CREATED="1433112366456" ID="ID_526331114" MODIFIED="1433112373623" TEXT="And then as the event continues, we just update that?"/>
+<node CREATED="1433112555534" ID="ID_1005121236" MODIFIED="1433112568574" TEXT="Motion started at X, continued at Y?"/>
+<node CREATED="1433112619474" ID="ID_1525176732" MODIFIED="1433112624139" TEXT="Yes, that&apos;s an OK string"/>
+</node>
+<node CREATED="1433112954775" FOLDED="true" ID="ID_1683777084" MODIFIED="1433114312290" TEXT="Event stopped">
+<node CREATED="1433112958289" ID="ID_1403957122" MODIFIED="1433112962008" TEXT="What exactly will this do?"/>
+<node CREATED="1433112963113" ID="ID_190659811" MODIFIED="1433112976663" TEXT="It needs to signal event started that the event has finished"/>
+<node CREATED="1433113031943" ID="ID_1781314018" MODIFIED="1433113038331" TEXT="We could do that using a file of some sort"/>
+<node CREATED="1433114091205" ID="ID_1910566151" MODIFIED="1433114100804" TEXT="Or using (named/anonymous) pipes"/>
+</node>
+<node CREATED="1433114308190" ID="ID_1503710909" MODIFIED="1433114413014" TEXT="Is it possible for us to get multiple event-started at the same time? Shouldn&apos;t be...">
+<node CREATED="1433114415852" ID="ID_1537444555" MODIFIED="1433114431119" TEXT="But could we still be running an event-started when another one comes in? Potentially."/>
+</node>
+<node CREATED="1433638220819" ID="ID_1041631869" MODIFIED="1433642909373" TEXT="Still questioning the motion detect...">
+<node CREATED="1433639336269" ID="ID_1033219909" MODIFIED="1433640519499" TEXT="Should we just do plain webcam?"/>
+<node CREATED="1433640558826" ID="ID_1313780214" MODIFIED="1433640567119" TEXT="Nah, stick with motion detect. It&apos;s more interesting"/>
+</node>
+<node CREATED="1433642917217" ID="ID_1298161441" MODIFIED="1433642959485" TEXT="We&apos;re sort of dependent upon seeing the end event">
+<node CREATED="1433642962844" ID="ID_147632571" MODIFIED="1433642975015" TEXT="If we don&apos;t see that, we&apos;ll just keep updating the site, and that&apos;s not good..."/>
+<node CREATED="1433643011164" ID="ID_1724427912" MODIFIED="1433643030441" TEXT="Is there any way we can cope with that?"/>
+<node CREATED="1433643046824" ID="ID_859943319" MODIFIED="1433643051470" TEXT="Let&apos;s assume that it&apos;s reliable"/>
+<node CREATED="1433643183489" ID="ID_577848422" MODIFIED="1433643212944" TEXT="What if we get an event start, then and event end, and before that completes, we get another event start - we&apos;ll miss that"/>
+<node CREATED="1433643339797" ID="ID_190321798" MODIFIED="1433643352024" TEXT="Hmm. Instead, if we capture a frame each time there&apos;s motion">
+<node CREATED="1433643352215" ID="ID_1014127613" MODIFIED="1433643383196" TEXT="And then have a long-running process that just gets the latest capture, compares it to what we already have on the site, and updates if necessary..."/>
+<node CREATED="1433643415305" ID="ID_1113821827" MODIFIED="1433643443913" TEXT="We avoid any locking nonsense, no events needed, and we still only update when we see motion..."/>
+</node>
+</node>
+</node>
+<node CREATED="1433114555656" ID="ID_126664002" MODIFIED="1433114558044" TEXT="Open questions">
+<node CREATED="1433114558920" ID="ID_1528912036" MODIFIED="1433640672817" TEXT="If we have a flock, will it automatically get released on process exit?">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1433114844586" ID="ID_1281082419" MODIFIED="1433116709368" TEXT="Getting an unused FD">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1433114849142" ID="ID_1818404305" LINK="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CB8QFjAA&amp;url=http%3A%2F%2Flinux.die.net%2Fman%2F2%2Fexit&amp;ei=95JrVeXgCYfeoASftYKQCw&amp;usg=AFQjCNHEAISB5Se7Ltwh_aZ61KkWDjXqUw&amp;sig2=uyMERu7MnlvzVhcdgRUxlw&amp;bvm=bv.94455598" MODIFIED="1433114849142" TEXT="google.com &gt; Url ? ..."/>
+<node CREATED="1433116573499" ID="ID_541870837" MODIFIED="1433116587765" TEXT="Each shell gets its own set of FDs, I think"/>
+<node CREATED="1433116587964" ID="ID_1653087681" MODIFIED="1433116600939" TEXT="We should be able to test this"/>
+<node CREATED="1433116692286" ID="ID_128717125" MODIFIED="1433116697032" TEXT="Tested, works with this approach"/>
+</node>
+<node CREATED="1433115251715" ID="ID_1314296616" MODIFIED="1433115256887" TEXT="Signalling a script">
+<node CREATED="1433115257628" ID="ID_1939771052" MODIFIED="1433115265708" TEXT="Use named/anonymous pipes"/>
+</node>
+</node>
+<node CREATED="1433114242811" ID="ID_605216001" MODIFIED="1433114322423" TEXT="Solution">
+<node CREATED="1433114260782" ID="ID_1653737247" MODIFIED="1433114265088" TEXT="Event started, we update the site"/>
+<node CREATED="1433114265284" ID="ID_279699854" MODIFIED="1433114282099" TEXT="Event started continues to update the site every N seconds"/>
+<node CREATED="1433114282291" ID="ID_1366852392" MODIFIED="1433114296279" TEXT="Event ends, we tell event started to stop via a pipe"/>
 </node>
 </node>
 <node CREATED="1431301460459" ID="ID_1634956536" MODIFIED="1431301461589" POSITION="right" TEXT="the site"/>
