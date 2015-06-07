@@ -109,11 +109,11 @@
 <node CREATED="1433114308190" ID="ID_1503710909" MODIFIED="1433114413014" TEXT="Is it possible for us to get multiple event-started at the same time? Shouldn&apos;t be...">
 <node CREATED="1433114415852" ID="ID_1537444555" MODIFIED="1433114431119" TEXT="But could we still be running an event-started when another one comes in? Potentially."/>
 </node>
-<node CREATED="1433638220819" ID="ID_1041631869" MODIFIED="1433642909373" TEXT="Still questioning the motion detect...">
+<node CREATED="1433638220819" FOLDED="true" ID="ID_1041631869" MODIFIED="1433645712950" TEXT="Still questioning the motion detect...">
 <node CREATED="1433639336269" ID="ID_1033219909" MODIFIED="1433640519499" TEXT="Should we just do plain webcam?"/>
 <node CREATED="1433640558826" ID="ID_1313780214" MODIFIED="1433640567119" TEXT="Nah, stick with motion detect. It&apos;s more interesting"/>
 </node>
-<node CREATED="1433642917217" ID="ID_1298161441" MODIFIED="1433642959485" TEXT="We&apos;re sort of dependent upon seeing the end event">
+<node CREATED="1433642917217" FOLDED="true" ID="ID_1298161441" MODIFIED="1433645713287" TEXT="We&apos;re sort of dependent upon seeing the end event">
 <node CREATED="1433642962844" ID="ID_147632571" MODIFIED="1433642975015" TEXT="If we don&apos;t see that, we&apos;ll just keep updating the site, and that&apos;s not good..."/>
 <node CREATED="1433643011164" ID="ID_1724427912" MODIFIED="1433643030441" TEXT="Is there any way we can cope with that?"/>
 <node CREATED="1433643046824" ID="ID_859943319" MODIFIED="1433643051470" TEXT="Let&apos;s assume that it&apos;s reliable"/>
@@ -122,6 +122,17 @@
 <node CREATED="1433643352215" ID="ID_1014127613" MODIFIED="1433643383196" TEXT="And then have a long-running process that just gets the latest capture, compares it to what we already have on the site, and updates if necessary..."/>
 <node CREATED="1433643415305" ID="ID_1113821827" MODIFIED="1433643443913" TEXT="We avoid any locking nonsense, no events needed, and we still only update when we see motion..."/>
 </node>
+</node>
+<node CREATED="1433114242811" FOLDED="true" ID="ID_605216001" MODIFIED="1433645713600" TEXT="Old Solution">
+<node CREATED="1433114260782" ID="ID_1653737247" MODIFIED="1433114265088" TEXT="Event started, we update the site"/>
+<node CREATED="1433114265284" ID="ID_279699854" MODIFIED="1433114282099" TEXT="Event started continues to update the site every N seconds"/>
+<node CREATED="1433114282291" ID="ID_1366852392" MODIFIED="1433114296279" TEXT="Event ends, we tell event started to stop via a pipe"/>
+</node>
+<node CREATED="1433645454585" ID="ID_76504119" MODIFIED="1433645584441" TEXT="Now, is it the site&apos;s responsibility to track capture times? Or will the motion script do it?">
+<node CREATED="1433645554930" ID="ID_1548574691" MODIFIED="1433645579666" TEXT="Well, maybe the site wants to show the last 2 images. In that case, it&apos;s sthe site&apos;s responsibility"/>
+<node CREATED="1433645610876" ID="ID_996592868" MODIFIED="1433645631615" TEXT="But do we really want to upload to the site every N seconds? That seems wasteful..."/>
+<node CREATED="1433645882266" ID="ID_263761962" MODIFIED="1433645901240" TEXT="It makes sense for the site to tell us if it wants this image rather than us trying to decide from the motion capture side."/>
+<node CREATED="1433645905338" ID="ID_1604934329" MODIFIED="1433645916085" TEXT="That way they&apos;re totally decoupled, just dependent on the interface"/>
 </node>
 </node>
 <node CREATED="1433114555656" ID="ID_126664002" MODIFIED="1433114558044" TEXT="Open questions">
@@ -135,14 +146,9 @@
 <node CREATED="1433116587964" ID="ID_1653087681" MODIFIED="1433116600939" TEXT="We should be able to test this"/>
 <node CREATED="1433116692286" ID="ID_128717125" MODIFIED="1433116697032" TEXT="Tested, works with this approach"/>
 </node>
-<node CREATED="1433115251715" ID="ID_1314296616" MODIFIED="1433115256887" TEXT="Signalling a script">
-<node CREATED="1433115257628" ID="ID_1939771052" MODIFIED="1433115265708" TEXT="Use named/anonymous pipes"/>
 </node>
-</node>
-<node CREATED="1433114242811" ID="ID_605216001" MODIFIED="1433114322423" TEXT="Solution">
-<node CREATED="1433114260782" ID="ID_1653737247" MODIFIED="1433114265088" TEXT="Event started, we update the site"/>
-<node CREATED="1433114265284" ID="ID_279699854" MODIFIED="1433114282099" TEXT="Event started continues to update the site every N seconds"/>
-<node CREATED="1433114282291" ID="ID_1366852392" MODIFIED="1433114296279" TEXT="Event ends, we tell event started to stop via a pipe"/>
+<node CREATED="1433645443591" ID="ID_412616605" MODIFIED="1433645444910" TEXT="Solution">
+<node CREATED="1433645445596" ID="ID_1409640841" MODIFIED="1433645454305" TEXT="Get latest capture from captures dir"/>
 </node>
 </node>
 <node CREATED="1431301460459" ID="ID_1634956536" MODIFIED="1431301461589" POSITION="right" TEXT="the site"/>
