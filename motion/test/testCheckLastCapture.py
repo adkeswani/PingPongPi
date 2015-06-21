@@ -4,9 +4,7 @@ import os
 import shutil
 
 SCRIPT_CMD = "../checkLastCapture"
-TEST_DIR = "./test"
 CAPTURES_DIR = "testCaptures"
-CAPTURES_DIR_ARG = os.path.join(TEST_DIR, CAPTURES_DIR)
 
 class TestCheckLastCapture(unittest.TestCase):
 
@@ -25,15 +23,19 @@ class TestCheckLastCapture(unittest.TestCase):
             self.assertEqual(error.output, "Usage: " + SCRIPT_CMD + " capturesDir\n")
 
     def test_correct_number_of_args(self):
-        check_output([SCRIPT_CMD, CAPTURES_DIR_ARG])
+        check_output([SCRIPT_CMD, CAPTURES_DIR])
 
     def test_too_many_args(self):
         try:
-            check_output([SCRIPT_CMD, CAPTURES_DIR_ARG, CAPTURES_DIR_ARG])
+            check_output([SCRIPT_CMD, CAPTURES_DIR, CAPTURES_DIR])
             self.assertTrue(False)
         except CalledProcessError as error:
             self.assertEqual(error.returncode, 1)
             self.assertEqual(error.output, "Usage: " + SCRIPT_CMD + " capturesDir\n")
+
+    def test_no_files(self):
+        output = check_output([SCRIPT_CMD, CAPTURES_DIR])
+        self.assertEqual(output, "No captures found in " + CAPTURES_DIR + "\n");
 
 if __name__ == '__main__':
     unittest.main()
