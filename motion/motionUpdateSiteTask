@@ -1,0 +1,16 @@
+#!/bin/bash
+set -eu
+
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 capturesDirAbs updateInterval"
+    exit 1
+fi
+
+SCRIPTDIR="$(dirname "$(readlink -f "$0")")"
+UPDINT=$2
+
+while true; do
+    sleep $UPDINT
+    $SCRIPTDIR/checkLastCapture $1
+    # Update site if necessary
+done
