@@ -2,7 +2,6 @@ import unittest
 from subprocess import check_output, CalledProcessError
 import os
 import shutil
-import time
 
 SCRIPT_CMD = "../checkLastCapture"
 CAPTURES_DIR = "testCaptures"
@@ -46,39 +45,37 @@ class TestCheckLastCapture(unittest.TestCase):
         self.assertEqual(output, "No captures found in " + CAPTURES_DIR + "\n");
 
     def test_one_file(self):
-        path, modified = openFileAndGetModifiedTime("test")
+        path, modified = openFileAndGetModifiedTime("01-20150621183214-02.jpg")
         output = check_output([SCRIPT_CMD, CAPTURES_DIR])
 
         self.assertEqual(output, "Last motion was " + path + " captured at " + modified)
 
         captures = os.listdir(CAPTURES_DIR)
         self.assertEqual(len(captures), 1)
-        self.assertEqual(captures[0], "test");
+        self.assertEqual(captures[0], "01-20150621183214-02.jpg");
 
     def test_multiple_files(self):
-        path, modified = openFileAndGetModifiedTime("test")
-        time.sleep(1); # Otherwise the last modified times are too close together
-        path2, modified2 = openFileAndGetModifiedTime("test2")
+        path, modified = openFileAndGetModifiedTime("01-20150621183214-02.jpg")
+        path2, modified2 = openFileAndGetModifiedTime("01-20150621183215-00.jpg")
         output = check_output([SCRIPT_CMD, CAPTURES_DIR])
 
         self.assertEqual(output, "Last motion was " + path2 + " captured at " + modified2)
 
         captures = os.listdir(CAPTURES_DIR)
         self.assertEqual(len(captures), 1)
-        self.assertEqual(captures[0], "test2");
+        self.assertEqual(captures[0], "01-20150621183215-00.jpg");
 
     def test_run_twice(self):
-        path, modified = openFileAndGetModifiedTime("test")
+        path, modified = openFileAndGetModifiedTime("01-20150621183214-02.jpg")
         output = check_output([SCRIPT_CMD, CAPTURES_DIR])
-        time.sleep(1); # Otherwise the last modified times are too close together
-        path2, modified2 = openFileAndGetModifiedTime("test2")
+        path2, modified2 = openFileAndGetModifiedTime("01-20150621183215-00.jpg")
         output = check_output([SCRIPT_CMD, CAPTURES_DIR])
 
         self.assertEqual(output, "Last motion was " + path2 + " captured at " + modified2)
 
         captures = os.listdir(CAPTURES_DIR)
         self.assertEqual(len(captures), 1)
-        self.assertEqual(captures[0], "test2");
+        self.assertEqual(captures[0], "01-20150621183215-00.jpg");
 
 if __name__ == '__main__':
     unittest.main()
