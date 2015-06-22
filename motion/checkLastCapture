@@ -9,13 +9,14 @@ fi
 CAPDIR=$1
 
 # Get last capture
-CAPFILE=$(ls -t $CAPDIR | head -1)
+# NOTE: Assumes filenames are in motion command's default format, e.g. 01-20150621183214-02.jpg
+CAPFILE=$(ls $CAPDIR | tail -1)
 if [ -n "$CAPFILE" ]; then
     CAPTIME=`date -r "$CAPDIR/$CAPFILE"`
-    echo "Last motion was captured at $CAPTIME"
+    echo "Last motion was $CAPDIR/$CAPFILE captured at $CAPTIME"
 
-    # Remove all other captures, assumes filenames have no newlines
-    ls -dt $CAPDIR/* | tail -n +2 | xargs --null -r -d "\n" rm
+    # Remove all other captures
+    ls -d $CAPDIR/* | head -n -1 | xargs --null -r -d "\n" rm
 else
     echo "No captures found in $CAPDIR"
 fi

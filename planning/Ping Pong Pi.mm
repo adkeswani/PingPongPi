@@ -155,6 +155,20 @@
 <node CREATED="1433645443591" ID="ID_412616605" MODIFIED="1433645444910" TEXT="Solution">
 <node CREATED="1433645445596" ID="ID_1409640841" MODIFIED="1433645454305" TEXT="Get latest capture from captures dir"/>
 </node>
+<node CREATED="1434937683269" ID="ID_528108938" MODIFIED="1434937684261" TEXT="Problem">
+<node CREATED="1434937685195" ID="ID_444145060" MODIFIED="1434939225748" TEXT="If the file creates are too close together, ls doesn&apos;t always return the correct one (resolution isn&apos;t small enough)">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1434937705841" ID="ID_865193749" MODIFIED="1434939225748" TEXT="If we rely on the filename, that creates a tight dependency, no?">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1434939215295" ID="ID_1965479041" MODIFIED="1434939219119" TEXT="Meh, used it. Fixed now"/>
+</node>
+<node CREATED="1434937905651" ID="ID_235970445" MODIFIED="1434937933169" TEXT="We can always transform the timestamp when we pass across to the website"/>
+<node CREATED="1434938101584" ID="ID_1642271525" MODIFIED="1434938108616" TEXT="Also, do we need to reintroduce locking?">
+<node CREATED="1434938437211" ID="ID_604657359" MODIFIED="1434938448026" TEXT="What if something hangs, or just takes a little longer than usual?"/>
+</node>
+<node CREATED="1434938457828" ID="ID_1656352208" MODIFIED="1434938479260" TEXT="What if another file gets added while we&apos;re processing? We might delete that..."/>
+</node>
 </node>
 <node CREATED="1431301460459" ID="ID_1634956536" MODIFIED="1431301461589" POSITION="right" TEXT="the site"/>
 </node>
