@@ -12,7 +12,7 @@ CAPDIR=$1
 CAPFILE=$(ls -t $CAPDIR | head -1)
 if [ -n "$CAPFILE" ]; then
     CAPTIME=`date -r "$CAPDIR/$CAPFILE"`
-    echo "Last motion was captured at $CAPTIME"
+    echo "Last motion was $CAPDIR/$CAPFILE captured at $CAPTIME"
 
     # Remove all other captures, assumes filenames have no newlines
     ls -dt $CAPDIR/* | tail -n +2 | xargs --null -r -d "\n" rm
