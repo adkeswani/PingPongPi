@@ -1,3 +1,4 @@
 motion/captures/*
 *.swp
 *.lck
+*.pyc
