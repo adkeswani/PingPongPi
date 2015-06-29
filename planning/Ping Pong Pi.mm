@@ -170,6 +170,9 @@
 <node CREATED="1434938457828" ID="ID_1656352208" MODIFIED="1434938479260" TEXT="What if another file gets added while we&apos;re processing? We might delete that..."/>
 </node>
 </node>
-<node CREATED="1431301460459" ID="ID_1634956536" MODIFIED="1431301461589" POSITION="right" TEXT="the site"/>
+<node CREATED="1431301460459" ID="ID_1634956536" MODIFIED="1431301461589" POSITION="right" TEXT="the site">
+<node CREATED="1435538954577" ID="ID_892897153" MODIFIED="1435538973181" TEXT="So we&apos;ll probably use a bunch of URLs for the different actions..."/>
+<node CREATED="1435539378414" ID="ID_350308611" MODIFIED="1435539423046" TEXT="Thinking of having a LastCapture object that we can get/set. It will remain in memory, but we will also write to file, so next time server starts up we can use it"/>
+</node>
 </node>
 </map>

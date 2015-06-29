@@ -11,6 +11,8 @@ UPDINT=$2
 
 while true; do
     sleep $UPDINT
-    $SCRIPTDIR/checkLastCapture $1
-    # Update site if necessary
+    LASTCAP=$(python $SCRIPTDIR/checkLastCapture.py $1)
+    if [ -n "$LASTCAP" ]; then
+        ruby updateSite.rb
+    fi
 done
