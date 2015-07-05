@@ -7,6 +7,14 @@
 <node CREATED="1431299723920" ID="ID_317925435" MODIFIED="1431814644953" TEXT="Instead, have the website expose an interface that motion can use to pass in updates">
 <font NAME="SansSerif" SIZE="12"/>
 </node>
+<node CREATED="1436048732987" ID="ID_1190066321" MODIFIED="1436048806765" TEXT="Should motion maintain a variable holding the last capture time that was sent to the service? That would avoid the round trip of sending it to the service to ask. Yes, good."/>
+<node CREATED="1436048810312" ID="ID_1982464318" MODIFIED="1436048841268" TEXT="But for the first-start case, we still need a way to know what the last update time was from the service"/>
+<node CREATED="1436048841423" ID="ID_1154661304" MODIFIED="1436048867710" TEXT="OK, so we would get that via a GET on /lastCapture/time">
+<node CREATED="1436048967804" ID="ID_494122225" MODIFIED="1436048973116" TEXT="This would return via JSON"/>
+</node>
+<node CREATED="1436048973827" ID="ID_1764177320" MODIFIED="1436048990661" TEXT="Then we would do a POST on /lastCapture, with a URL encoded timestamp">
+<node CREATED="1436048993237" ID="ID_1481042172" MODIFIED="1436049002507" TEXT="If the timestamp is &lt; last capture&apos;s stamp, we would return an error"/>
+</node>
 </node>
 <node CREATED="1431301430942" ID="ID_454370266" MODIFIED="1433114316031" POSITION="right" TEXT="motion detect (the thing that sends updates to the site)">
 <node CREATED="1433114316010" ID="ID_467325129" MODIFIED="1433114317244" TEXT="Notes">
