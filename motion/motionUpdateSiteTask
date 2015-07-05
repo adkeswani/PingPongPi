@@ -13,6 +13,7 @@ while true; do
     sleep $UPDINT
     LASTCAP=$(python $SCRIPTDIR/checkLastCapture.py $1)
     if [ -n "$LASTCAP" ]; then
-        ruby updateSite.rb
+        # Optimize here, store LASTCAP
+        ruby updateSite.rb $LASTCAP
     fi
 done
