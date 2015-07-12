@@ -4,10 +4,11 @@ require 'json'
 
 HOST = '127.0.0.1'
 PORT = '8080'
-LAST_CAPTURE_TIME_PATH = '/lastCapture/time'
+LAST_CAPTURE_TIME_URI = '/captures/0/time'
 
 def updateRequired(http)
-    request = Net::HTTP::Get.new LAST_CAPTURE_TIME_PATH
+    puts "### Requesting last capture time from #{LAST_CAPTURE_TIME_URI} ###"
+    request = Net::HTTP::Get.new LAST_CAPTURE_TIME_URI
     response = http.request request
     puts "Response #{response.code} #{response.message}: #{response.body}"
     return false
@@ -17,6 +18,9 @@ def update
     #payload = {
     #    "blah" => "blah"
     #}.to_json
+    #params = { :lastcapturetime =>  }
+    #uri.query = URI.encode_www_form params
+
 
     #request = Net::HTTP::Get.new('/lastCapture/time', initheader = {'Content-Type' =>'application/json'})
     # request.basic_auth @user, @pass
@@ -26,7 +30,6 @@ def update
     # puts "Response #{response.code} #{response.message}: #{response.body}"
     return
 end
-
 
 Net::HTTP.start(HOST, PORT) do |http|
     if updateRequired(http)

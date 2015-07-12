@@ -15,6 +15,21 @@
 <node CREATED="1436048973827" ID="ID_1764177320" MODIFIED="1436048990661" TEXT="Then we would do a POST on /lastCapture, with a URL encoded timestamp">
 <node CREATED="1436048993237" ID="ID_1481042172" MODIFIED="1436049002507" TEXT="If the timestamp is &lt; last capture&apos;s stamp, we would return an error"/>
 </node>
+<node CREATED="1436661620746" ID="ID_1853679877" MODIFIED="1436661628888" TEXT="Where will the last capture time be stored?">
+<node CREATED="1436661629690" ID="ID_983296941" MODIFIED="1436661649152" TEXT="Should it be the last modified time of the image file? I think that&apos;s a bit unsafe."/>
+<node CREATED="1436661649347" ID="ID_1267475203" MODIFIED="1436661659516" TEXT="If we use a separate file, is it better?"/>
+<node CREATED="1436661763663" ID="ID_1219696568" MODIFIED="1436661771219" TEXT="So it would be a text file containing the last modified time?"/>
+<node CREATED="1436661806272" ID="ID_219636660" MODIFIED="1436661809627" TEXT="Yes, it&apos;s less fragile"/>
+</node>
+<node CREATED="1436662201063" ID="ID_174449131" MODIFIED="1436662205966" TEXT="How are we going to pass the time around?">
+<node CREATED="1436664710530" ID="ID_882291964" MODIFIED="1436664716810" TEXT="Going to use milliseconds since epch"/>
+</node>
+<node CREATED="1436664717702" ID="ID_1756770794" MODIFIED="1436664722653" TEXT="Testing...">
+<node CREATED="1436664723362" ID="ID_256507706" MODIFIED="1436664727218" TEXT="Unit test?"/>
+<node CREATED="1436664728305" ID="ID_1053448036" MODIFIED="1436664738648" TEXT="Functional test?"/>
+<node CREATED="1436664819712" ID="ID_119969326" MODIFIED="1436664827584" TEXT="We can write a test that tests the interface to the site"/>
+<node CREATED="1436664848304" ID="ID_565523087" MODIFIED="1436664858019" TEXT="OR we can write a unit test for the methods inside the file..."/>
+</node>
 </node>
 <node CREATED="1431301430942" ID="ID_454370266" MODIFIED="1433114316031" POSITION="right" TEXT="motion detect (the thing that sends updates to the site)">
 <node CREATED="1433114316010" ID="ID_467325129" MODIFIED="1433114317244" TEXT="Notes">
