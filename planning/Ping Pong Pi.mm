@@ -29,6 +29,7 @@
 <node CREATED="1436664728305" ID="ID_1053448036" MODIFIED="1436664738648" TEXT="Functional test?"/>
 <node CREATED="1436664819712" ID="ID_119969326" MODIFIED="1436664827584" TEXT="We can write a test that tests the interface to the site"/>
 <node CREATED="1436664848304" ID="ID_565523087" MODIFIED="1436664858019" TEXT="OR we can write a unit test for the methods inside the file..."/>
+<node CREATED="1436665350657" ID="ID_1765236532" MODIFIED="1436665362506" TEXT="We&apos;ve been doing "/>
 </node>
 </node>
 <node CREATED="1431301430942" ID="ID_454370266" MODIFIED="1433114316031" POSITION="right" TEXT="motion detect (the thing that sends updates to the site)">

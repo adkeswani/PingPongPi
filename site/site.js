@@ -2,7 +2,7 @@ if (process.argv.length != 3)
 {
     if (process.argv.length >= 2)
     {
-        console.log("Usage: %s %s absCapturePath", process.argv[0], process.argv[1]);
+        console.log("Usage: %s %s capturePath", process.argv[0], process.argv[1]);
     }
     process.exit();
 }
@@ -24,24 +24,29 @@ function respondWithLastCaptureTime(response)
 
     fs.readFile(LAST_CAPTURE_TIME_FILE_PATH, 'utf8', function(err, data)
     {
-        if ((err == null) || (err.code == 'ENOENT'))
+        if (!err)
         {
             response.writeHead(200, {'Content-Type': 'application/json'});
             var lastCaptureTimeJson;
-            if (err)
-            {
-                lastCaptureTimeJson = JSON.stringify({lastCaptureTime: '0'});
-            }
-            else
-            {
-                lastCaptureTimeJson = JSON.stringify({lastCaptureTime: data.trim()});
-            }
+            console.log('Capture time file contains %s.', data.trim());
+            lastCaptureTimeJson = JSON.stringify({lastCaptureTime: data.trim()});
+            response.end(lastCaptureTimeJson);
+            console.log('Responded with 200. %s', lastCaptureTimeJson);
+        }
+        else if (err.code == 'ENOENT')
+        {
+            response.writeHead(200, {'Content-Type': 'application/json'});
+            var lastCaptureTimeJson;
+            console.log('No capture time file found.');
+            lastCaptureTimeJson = JSON.stringify({lastCaptureTime: '0'});
             response.end(lastCaptureTimeJson);
             console.log('Responded with 200. %s', lastCaptureTimeJson);
         }
         else
         {
-            response.writeHead(500, 'Could not stat last capture file');
+            console.log(err);
+            response.writeHead(500, 'Could not read last capture file');
+            response.end();
             console.log('Responded with 500. Could not read last capture time file.');
         }
     });
@@ -112,3 +117,5 @@ server.listen(8080);
 
 // Put a friendly message on the terminal
 console.log('Server running at http://127.0.0.1:8080/');
+console.log('Last capture path is %s', LAST_CAPTURE_PATH);
+console.log('Last capture time file path is %s', LAST_CAPTURE_TIME_FILE_PATH);
