@@ -2,7 +2,7 @@ import unittest
 import os
 import shutil
 import time
-from checkLastCapture import *
+from getLastCapture import *
 
 SCRIPT_ARG = "test.py"
 CAPTURES_DIR = "testCaptures"
@@ -12,7 +12,7 @@ def createTestFile(name):
     testFile = open(testFilePath, "w")
     return testFilePath
 
-class TestCheckLastCapture(unittest.TestCase):
+class TestGetLastCapture(unittest.TestCase):
 
     def setUp(self):
         os.makedirs(CAPTURES_DIR);
