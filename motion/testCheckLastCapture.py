@@ -41,37 +41,33 @@ class TestCheckLastCapture(unittest.TestCase):
         self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), "")
 
     def test_one_file(self):
-        path = createTestFile("01-20150621183214-02.jpg")
+        path = createTestFile("20150725190648.00.1437876408.jpg")
 
-        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path);
-
-        captures = os.listdir(CAPTURES_DIR)
-        self.assertEqual(len(captures), 1)
-        self.assertEqual(captures[0], "01-20150621183214-02.jpg");
-
-        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path);
+        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path + " " + "1437876408");
 
         captures = os.listdir(CAPTURES_DIR)
         self.assertEqual(len(captures), 1)
-        self.assertEqual(captures[0], "01-20150621183214-02.jpg");
+        self.assertEqual(captures[0], "20150725190648.00.1437876408.jpg");
+
+        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path + " " + "1437876408");
+
+        captures = os.listdir(CAPTURES_DIR)
+        self.assertEqual(len(captures), 1)
+        self.assertEqual(captures[0], "20150725190648.00.1437876408.jpg");
 
     def test_multiple_files(self):
-        # Also ensure we are getting the last capture based on filename, not modified time
-        path2 = createTestFile("01-20150621183215-00.jpg")
-        time.sleep(1)
-        path = createTestFile("01-20150621183214-02.jpg")
-
-        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path2);
-
+        path = createTestFile("20150725190648.00.1437876408.jpg")
+        path2 = createTestFile("20150725190648.01.1437876408.jpg")
+        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path2 + " " + "1437876408");
         captures = os.listdir(CAPTURES_DIR)
         self.assertEqual(len(captures), 1)
-        self.assertEqual(captures[0], "01-20150621183215-00.jpg");
+        self.assertEqual(captures[0], "20150725190648.01.1437876408.jpg");
 
-        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path2);
-
+        path3 = createTestFile("20150725190658.00.1437876418.jpg")
+        self.assertEqual(main([SCRIPT_ARG, CAPTURES_DIR]), path3 + " " + "1437876418");
         captures = os.listdir(CAPTURES_DIR)
         self.assertEqual(len(captures), 1)
-        self.assertEqual(captures[0], "01-20150621183215-00.jpg");
+        self.assertEqual(captures[0], "20150725190658.00.1437876418.jpg");
 
 if __name__ == '__main__':
     unittest.main()

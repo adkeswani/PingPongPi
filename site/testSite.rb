@@ -66,9 +66,3 @@ class SiteLastCaptureTimeTest < Test::Unit::TestCase
         File.delete TEST_TIME_FILE_PATH
     end
 end
-
-# Unopenable capture file
-
-
-
-

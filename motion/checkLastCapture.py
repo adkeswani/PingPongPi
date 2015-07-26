@@ -1,12 +1,14 @@
 import sys
 import os
 
+CAPTURE_TIME_IN_SECONDS_FIELD = 2
+
 def getLastCaptureAndOthers(capturesDir):
     captures = os.listdir(capturesDir)
-    captures.sort()
     if len(captures) == 0:
         return "", ""
     else:
+        captures.sort()
         lastCapture = captures.pop()
         return lastCapture, captures
 
@@ -22,7 +24,7 @@ def main(args):
     lastCapture, otherCaptures = getLastCaptureAndOthers(capturesDir)
     if lastCapture:
         deleteCaptures(capturesDir, otherCaptures)
-        return os.path.join(capturesDir, lastCapture)
+        return os.path.join(capturesDir, lastCapture) + " " + lastCapture.split(".")[CAPTURE_TIME_IN_SECONDS_FIELD]
     else:
         return ""
 
