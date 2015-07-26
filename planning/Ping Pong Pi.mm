@@ -20,6 +20,10 @@
 <node CREATED="1436661649347" ID="ID_1267475203" MODIFIED="1436661659516" TEXT="If we use a separate file, is it better?"/>
 <node CREATED="1436661763663" ID="ID_1219696568" MODIFIED="1436661771219" TEXT="So it would be a text file containing the last modified time?"/>
 <node CREATED="1436661806272" ID="ID_219636660" MODIFIED="1436661809627" TEXT="Yes, it&apos;s less fragile"/>
+<node CREATED="1437874687030" ID="ID_209364264" MODIFIED="1437874700087" TEXT="Hmm...if so, then why are we using last modified time of file in other places?"/>
+<node CREATED="1437874700337" ID="ID_143550189" MODIFIED="1437874738573" TEXT="Should we place a reliance on last modified time or not, that&apos;s the main question"/>
+<node CREATED="1437874838165" ID="ID_1993307836" MODIFIED="1437874932332" TEXT="When we pass a file across, should we depend on it?"/>
+<node CREATED="1437874952511" ID="ID_1700806203" MODIFIED="1437874961877" TEXT="It is fragile on the server and I&apos;m thinking also on the client side"/>
 </node>
 <node CREATED="1436662201063" ID="ID_174449131" MODIFIED="1436662205966" TEXT="How are we going to pass the time around?">
 <node CREATED="1436664710530" ID="ID_882291964" MODIFIED="1436664716810" TEXT="Going to use milliseconds since epch"/>
