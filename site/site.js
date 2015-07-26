@@ -63,6 +63,8 @@ function respondWithLastCapturePage(response)
 // Configure our HTTP server to respond with Hello World to all requests.
 var server = http.createServer(function (request, response) 
 {
+
+/*
     if (request.method == 'POST') 
     {
         var body = '';
@@ -73,14 +75,18 @@ var server = http.createServer(function (request, response)
             if (body.length > 1e6) { 
                 request.connection.destroy();
             }
-    
+        });
+
         request.on('end', function() { 
-            console.log(body);
+            var bodyJson = JSON.parse(body);
+            console.log(bodyJson);
 
             // Look at URL, redirect appropriate method
         });
     }
-    else if (request.method == 'GET')
+*/
+
+    if (request.method == 'GET')
     {
         console.log('### Received GET request ###');
         console.log(request.headers);
